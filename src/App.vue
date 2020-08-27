@@ -1,13 +1,39 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+      <div id="curtain" class="curtain-component">
+        <img src="@/assets/logo.png" id="logo"> 
+      </div>
+      <!-- <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link> -->
     <router-view/>
   </div>
 </template>
+<script>
+export default {
+  data(){
+    return{
+      curtainTop: 0,
+      logoTop: 280
+    }
+  },
+  mounted: function() {
+      console.log(document.getElementById("curtain").offsetTop);
+      window.addEventListener('scroll', this.moveCurtain); 
+  },
 
+  methods: {
+    moveCurtain: function(){
+        if(-this.curtainTop > 500) return;
+        this.curtainTop-= 28;
+        window.scrollTo(0, 0);
+        
+        document.getElementById("curtain").style.top= this.curtainTop + "px";
+        document.getElementById("logo").style.top= -this.curtainTop/2 + this.logoTop + "px";
+        console.log("pozvan" + this.curtainTop);
+    }
+  }
+}
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -19,6 +45,23 @@
 
 #nav {
   padding: 30px;
+}
+
+#logo{
+  position: absolute;
+  top: 280px;
+  width: 150px;
+  height: 150px;
+  left: 44%;
+}
+
+.curtain-component{
+  width: 100%;
+  display: flex;
+  position: fixed;
+  top: 0;
+  background-color: #e84545e6;
+  height: 700px; 
 }
 
 #nav a {
