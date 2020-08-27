@@ -1,7 +1,7 @@
 <template>
   <div id="app">
       <div id="curtain" class="curtain-component">
-        <img src="@/assets/logo.png" id="logo"> 
+        <img src="@/assets/logo.png" id="logo">
       </div>
       <!-- <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> -->
@@ -24,7 +24,7 @@ export default {
   methods: {
     moveCurtain: function(){
         if(-this.curtainTop > 500) return;
-        this.curtainTop-= 28;
+        this.curtainTop-= 35;
         window.scrollTo(0, 0);
         
         document.getElementById("curtain").style.top= this.curtainTop + "px";
@@ -60,8 +60,16 @@ export default {
   display: flex;
   position: fixed;
   top: 0;
-  background-color: #e84545e6;
+  background-color: #e31717e6;
   height: 700px; 
+}
+#app{
+  padding: 0;
+}
+
+body,html{
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 #nav a {
